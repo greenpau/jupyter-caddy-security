@@ -1,5 +1,6 @@
 .PHONY: build license envvar package test
 .PHONY: package_build package_clean package_zip package
+.PHONY: release
 
 PKG_NAME=jupyter-caddy-security
 PKG_NAME_EGG:=$(subst -,_,$(PKG_NAME))
