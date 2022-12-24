@@ -51,3 +51,13 @@ package: package_clean package_build package_zip
 	@rm -rf ${PKG_NAME_EGG}.egg-info *.egg build/
 	@find . -name \*.pyc -delete
 	@echo "$@: complete"
+
+release:
+	@if [ $(GIT_BRANCH) != "main" ]; then echo "cannot release to non-main branch $(GIT_BRANCH)" && false; fi
+	@git diff-index --quiet HEAD -- || ( echo "git directory is dirty, commit changes first" && false )
+	@versioned --source setup.py -patch
+	@git add setup.py
+	@git commit -m "released v`cat setup.py | grep "__version__ =" | cut -d"'" -f2`"
+	@git tag -a v`cat VERSION | head -1` -m "v`cat setup.py | grep "__version__ =" | cut -d"'" -f2`"
+	@#git push
+	@#git push --tags
