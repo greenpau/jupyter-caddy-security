@@ -59,5 +59,5 @@ release:
 	@git add setup.py
 	@git commit -m "released v`cat setup.py | grep "__version__ =" | cut -d"'" -f2`"
 	@git tag -a v`cat setup.py | grep "__version__ =" | cut -d"'" -f2` -m "v`cat setup.py | grep "__version__ =" | cut -d"'" -f2`"
-	@#git push
-	@#git push --tags
+	@git push
+	@git push --tags
