@@ -30,5 +30,8 @@ class CaddySecurityAuthorizer(Authorizer):
         self.log.info("jupyter_caddy_security | authorizer initialized.")
 
     def is_authorized(self, handler: JupyterHandler, user: Any, action: str, resource: str) -> bool:
-        self.log.info("received authorization request for '%s' resource, action: '%s' by user '%s'", resource, action, str(user))
+        if not user:
+            return False
+        if user.username == 'anonymous':
+            return False
         return True
