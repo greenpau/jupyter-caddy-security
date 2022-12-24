@@ -10,7 +10,7 @@ Install `jupyter-caddy-security`:
 git clone https://github.com/greenpau/jupyter-caddy-security.git
 cd jupyter-caddy-security
 make package
-pip install dist/jupyter-caddy-security-1.0.0.tar.gz --user
+pip install dist/jupyter-caddy-security-1.0.2.tar.gz --user
 ```
 
 Add `identity_provider_class` and `authorizer_class` to Jupyter Server
